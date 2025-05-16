@@ -14,13 +14,13 @@ const categories = [
 
 export default function CourseTabs() {
   return (
-    <div className="text-white py-12 px-4 max-w-6xl mx-auto">
-      <div className="text-center mb-10">
-        <p className="text-yellow-500 font-medium">Ongoing Courses</p>
-        <h2 className="text-3xl sm:text-4xl font-bold mt-2">
+    <div className="text-white py-12 px-4 max-w-6xl mx-auto sm:px-6 lg:px-8">
+      <div className="text-center mb-10 px-2 sm:px-4">
+        <p className="text-yellow-500 font-medium text-sm sm:text-base">Ongoing Courses</p>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2 leading-snug">
           Enhance Your Skills With <br /> Our Curated Courses.
         </h2>
-        <p className="text-gray-300 mt-4 max-w-xl mx-auto text-sm sm:text-base">
+        <p className="text-gray-300 mt-4 max-w-xl mx-auto text-xs sm:text-sm md:text-base">
           Dive into our expertly curated selection of featured courses, designed
           to equip you with the skills and knowledge needed to excel.
         </p>
@@ -32,7 +32,7 @@ export default function CourseTabs() {
             <TabsTrigger
               key={cat}
               value={cat}
-              className="data-[state=active]:bg-red-600 data-[state=active]:text-white text-sm px-4 py-2 rounded-md bg-[#3F0405] text-gray-300"
+              className="data-[state=active]:bg-red-600 data-[state=active]:text-white text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-md bg-[#3F0405] text-gray-300"
             >
               {cat}
             </TabsTrigger>
@@ -40,7 +40,7 @@ export default function CourseTabs() {
         </TabsList>
 
         {categories.map((cat) => (
-          <TabsContent key={cat} value={cat} className="mt-8">
+          <TabsContent key={cat} value={cat} className="mt-14">
             <div className="flex flex-col gap-6">
               {cardData
                 .filter((c) => cat === "All" || c.category === cat)

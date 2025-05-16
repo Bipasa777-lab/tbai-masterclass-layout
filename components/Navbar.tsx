@@ -11,7 +11,6 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetClose,
 } from "@/components/ui/sheet"; // adjust the path if different
 
 export default function Navbar() {
@@ -119,7 +118,7 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="bg-[#280000] text-white p-6 w-64"
+            className="bg-[#280000] text-white p-6 w-64 border-none outline-none shadow-none ring-0"
           >
             <SheetHeader>
               <SheetTitle className="text-yellow-400 font-bold text-lg mb-6 flex justify-between items-center">
