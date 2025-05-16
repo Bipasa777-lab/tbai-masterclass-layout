@@ -14,9 +14,11 @@ const categories = [
 
 export default function CourseTabs() {
   return (
-    <div className="text-white py-12 px-4 max-w-6xl mx-auto sm:px-6 lg:px-8">
+    <div className="text-white pt-32 pb-12 px-2 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="text-center mb-10 px-2 sm:px-4">
-        <p className="text-yellow-500 font-medium text-sm sm:text-base">Ongoing Courses</p>
+        <p className="text-yellow-500 font-medium text-sm sm:text-base">
+          Ongoing Courses
+        </p>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2 leading-snug">
           Enhance Your Skills With <br /> Our Curated Courses.
         </h2>
@@ -32,7 +34,7 @@ export default function CourseTabs() {
             <TabsTrigger
               key={cat}
               value={cat}
-              className="data-[state=active]:bg-red-600 data-[state=active]:text-white text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-md bg-[#3F0405] text-gray-300"
+              className="min-w-[80px] truncate data-[state=active]:bg-red-600 data-[state=active]:text-white text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-md bg-[#3F0405] text-gray-300"
             >
               {cat}
             </TabsTrigger>

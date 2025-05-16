@@ -3,7 +3,7 @@ import CourseTabs from "@/components/CourseTabs"
 
 export default function HomePage() {
   return (
-    <main className="bg-[#180000] min-h-screen">
+    <main className="bg-[#180000] min-h-screen flex flex-row ">
       <Navbar />
       <CourseTabs />
     </main>

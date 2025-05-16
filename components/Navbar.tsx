@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 
 // Import shadcn Sheet components
 import {
@@ -16,7 +16,17 @@ import {
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dropdownTimer = useRef<NodeJS.Timeout | null>(null);
+
+  // Listen to scroll to toggle glassmorphism
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 10);
+    }
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Function to open dropdown and set timer
   const handlePagesClick = () => {
@@ -25,7 +35,16 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-[#1A0505] text-white px-6 py-4 shadow-md">
+    <nav
+      className={`
+        fixed top-0 left-0 right-0 z-50 px-6 py-4 shadow-md transition-all duration-300
+        ${
+          scrolled
+            ? "bg-white/10 backdrop-blur-md text-black"
+            : "bg-[#1A0505] text-white"
+        }
+      `}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Left side empty */}
         <div className="w-1/4"></div>
@@ -36,38 +55,62 @@ export default function Navbar() {
             href="https://academy.technobillion.ai/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm hover:text-yellow-400"
+            className={`text-sm hover:text-yellow-400 ${
+              scrolled ? "text-black" : ""
+            }`}
           >
             Home
           </a>
-          <Link href="/courses" className="text-sm text-yellow-500">
+          <Link
+            href="/courses"
+            className={`text-sm ${
+              scrolled ? "text-yellow-600" : "text-yellow-500"
+            }`}
+          >
             Courses
           </Link>
-          <Link href="/pricing" className="text-sm hover:text-yellow-400">
+          <Link
+            href="/pricing"
+            className={`text-sm hover:text-yellow-400 ${
+              scrolled ? "text-black" : ""
+            }`}
+          >
             Pricing
           </Link>
 
           {/* Pages Dropdown */}
           <div className="relative text-sm cursor-pointer">
             <div
-              className="flex items-center hover:text-yellow-400 select-none"
+              className={`flex items-center select-none hover:text-yellow-400 ${
+                scrolled ? "text-black" : ""
+              }`}
               onClick={handlePagesClick}
             >
               Pages <ChevronDown className="w-4 h-4 ml-1" />
             </div>
             {showDropdown && (
-              <div className="absolute top-full left-0 mt-2 w-40 bg-[#280000] border border-[#3b0000] rounded-md shadow-lg z-50">
+              <div
+                className={`absolute top-full left-0 mt-2 w-40 rounded-md shadow-lg z-50 ${
+                  scrolled
+                    ? "bg-white/30 border border-white/20"
+                    : "bg-[#280000] border border-[#3b0000]"
+                }`}
+              >
                 <a
                   href="https://www.technobillion.ai/about"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-2 hover:bg-[#3b0000]"
+                  className={`block px-4 py-2 hover:bg-yellow-400/30 ${
+                    scrolled ? "text-black" : ""
+                  }`}
                 >
                   About
                 </a>
                 <Link
                   href="/faq"
-                  className="block px-4 py-2 hover:bg-[#3b0000]"
+                  className={`block px-4 py-2 hover:bg-yellow-400/30 ${
+                    scrolled ? "text-black" : ""
+                  }`}
                 >
                   FAQ
                 </Link>
@@ -75,7 +118,9 @@ export default function Navbar() {
                   href="https://www.technobillion.ai/career"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block px-4 py-2 hover:bg-[#3b0000]"
+                  className={`block px-4 py-2 hover:bg-yellow-400/30 ${
+                    scrolled ? "text-black" : ""
+                  }`}
                 >
                   Contact
                 </a>
@@ -87,7 +132,9 @@ export default function Navbar() {
             href="https://www.technobillion.ai/blog"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm hover:text-yellow-400"
+            className={`text-sm hover:text-yellow-400 ${
+              scrolled ? "text-black" : ""
+            }`}
           >
             Blog
           </a>
@@ -100,7 +147,13 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className="bg-yellow-400 text-black font-medium px-4 py-2 rounded-md hover:bg-yellow-500 transition">
+            <button
+              className={`font-medium px-4 py-2 rounded-md hover:bg-yellow-500 transition ${
+                scrolled
+                  ? "bg-yellow-400 text-black"
+                  : "bg-yellow-400 text-black"
+              }`}
+            >
               Enroll Now
             </button>
           </a>
@@ -110,7 +163,11 @@ export default function Navbar() {
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger asChild>
             <button
-              className="md:hidden p-2 rounded-md hover:bg-yellow-400 hover:text-black transition"
+              className={`md:hidden p-2 rounded-md transition-colors duration-300 ease-in-out ${
+                scrolled
+                  ? "hover:bg-yellow-400 hover:text-black text-black"
+                  : "hover:bg-yellow-400 hover:text-black text-white"
+              }`}
               aria-label="Toggle menu"
             >
               <Menu size={24} />
