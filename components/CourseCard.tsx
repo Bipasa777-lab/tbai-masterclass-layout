@@ -9,16 +9,27 @@ type Props = {
 
 const statusColorMap: Record<CourseCardType["status"], string> = {
   Active: "bg-green-700",
-  Scheduled: "bg-yellow-600",
+  Scheduled: "bg-yellow-400 text-black",
   Cancelled: "bg-red-700",
 }
 
 const CourseCard= ({ course }:Props) => {
   return (
-    <div className="rounded-xl overflow-hidden border border-[#3b0000] bg-[#280000] text-white shadow-md">
+    <div className="rounded-xl overflow-hidden border border-[#220707] bg-[#3F0405] text-white shadow-md">
       <div className="relative">
-        <img src={course.image} alt={course.title} className="w-full h-56 object-cover" />
-        <span className={`absolute top-3 text-white text-sm px-4 py-1 rounded-r-full ${statusColorMap[course.status]}`}>
+        <img src={course.image} alt={course.title} className="w-full h-44 object-cover" />
+        <span
+          className={`absolute top-3 left-3 text-lg font-bold px-10 py-1 rounded-full shadow-lg ${statusColorMap[course.status]}`}
+          style={{
+            minWidth:
+              course.status === "Active"
+                ? "90px"
+                : "160px", 
+            textAlign: "center",
+            background: course.status === "Cancelled" ? "rgba(0,0,0,0.5)" : undefined,
+            border: "2px solid #fff",
+          }}
+        >
           {course.status}
         </span>
       </div>
@@ -27,7 +38,7 @@ const CourseCard= ({ course }:Props) => {
         <h3 className="text-lg font-semibold mb-2 leading-snug">{course.title}</h3>
 
         <div className="flex items-center text-sm mb-3">
-          <div className="flex text-yellow-400 mr-2">
+          <div className="flex text-white mr-2">
             {Array(5)
               .fill(null)
               .map((_, i) => (

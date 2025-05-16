@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 
@@ -17,18 +17,30 @@ import {
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const dropdownTimer = useRef<NodeJS.Timeout | null>(null);
+
+  // Function to open dropdown and set timer
+  const handlePagesClick = () => {
+    setShowDropdown((prev) => !prev);
+    if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
+  };
 
   return (
-    <nav className="bg-[#1a0000] text-white px-6 py-4 shadow-md">
+    <nav className="bg-[#1A0505] text-white px-6 py-4 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Left side empty */}
         <div className="w-1/4"></div>
 
         {/* Center menu */}
         <div className="hidden md:flex items-center justify-center space-x-6 w-2/4">
-          <Link href="/" className="text-sm hover:text-yellow-400">
+          <a
+            href="https://academy.technobillion.ai/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm hover:text-yellow-400"
+          >
             Home
-          </Link>
+          </a>
           <Link href="/courses" className="text-sm text-yellow-500">
             Courses
           </Link>
@@ -37,50 +49,62 @@ export default function Navbar() {
           </Link>
 
           {/* Pages Dropdown */}
-          <div
-            className="relative text-sm cursor-pointer"
-            onMouseEnter={() => setShowDropdown(true)}
-            onMouseLeave={() => setShowDropdown(false)}
-          >
-            <div className="flex items-center hover:text-yellow-400 select-none">
+          <div className="relative text-sm cursor-pointer">
+            <div
+              className="flex items-center hover:text-yellow-400 select-none"
+              onClick={handlePagesClick}
+            >
               Pages <ChevronDown className="w-4 h-4 ml-1" />
             </div>
             {showDropdown && (
               <div className="absolute top-full left-0 mt-2 w-40 bg-[#280000] border border-[#3b0000] rounded-md shadow-lg z-50">
-                <Link
-                  href="/about"
+                <a
+                  href="https://www.technobillion.ai/about"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block px-4 py-2 hover:bg-[#3b0000]"
                 >
                   About
-                </Link>
+                </a>
                 <Link
                   href="/faq"
                   className="block px-4 py-2 hover:bg-[#3b0000]"
                 >
                   FAQ
                 </Link>
-                <Link
-                  href="/contact"
+                <a
+                  href="https://www.technobillion.ai/career"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block px-4 py-2 hover:bg-[#3b0000]"
                 >
                   Contact
-                </Link>
+                </a>
               </div>
             )}
           </div>
 
-          <Link href="/blog" className="text-sm hover:text-yellow-400">
+          <a
+            href="https://www.technobillion.ai/blog"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm hover:text-yellow-400"
+          >
             Blog
-          </Link>
+          </a>
         </div>
 
         {/* Right side Enroll Button */}
         <div className="hidden md:flex justify-end w-1/4">
-          <Link href="/enroll">
+          <a
+            href="https://www.technobillion.ai/career"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <button className="bg-yellow-400 text-black font-medium px-4 py-2 rounded-md hover:bg-yellow-500 transition">
               Enroll Now
             </button>
-          </Link>
+          </a>
         </div>
 
         {/* Mobile Hamburger Button triggers Sheet */}
@@ -104,13 +128,15 @@ export default function Navbar() {
             </SheetHeader>
 
             <nav className="flex flex-col space-y-4">
-              <Link
-                href="/"
+              <a
+                href="https://academy.technobillion.ai/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-white hover:text-yellow-400 px-2 py-1 rounded"
                 onClick={() => setSheetOpen(false)}
               >
                 Home
-              </Link>
+              </a>
               <Link
                 href="/courses"
                 className="block text-yellow-500 px-2 py-1 rounded"
@@ -133,19 +159,26 @@ export default function Navbar() {
                 onClose={() => setSheetOpen(false)}
               />
 
-              <Link
-                href="/blog"
+              <a
+                href="https://www.technobillion.ai/blog"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-white hover:text-yellow-400 px-2 py-1 rounded"
                 onClick={() => setSheetOpen(false)}
               >
                 Blog
-              </Link>
+              </a>
 
-              <Link href="/enroll" onClick={() => setSheetOpen(false)}>
+              <a
+                href="https://www.technobillion.ai/career"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
+              >
                 <button className="w-full bg-yellow-400 text-black font-medium px-4 py-2 rounded-md hover:bg-yellow-500 transition mt-4">
                   Enroll Now
                 </button>
-              </Link>
+              </a>
             </nav>
           </SheetContent>
         </Sheet>
@@ -185,13 +218,15 @@ function SidebarDropdown({
           role="region"
           aria-label="Pages submenu"
         >
-          <Link
-            href="/about"
+          <a
+            href="https://www.technobillion.ai/about"
+            target="_blank"
+            rel="noopener noreferrer"
             className="block text-white hover:text-yellow-400 px-2 py-1 rounded"
             onClick={onClose}
           >
             About
-          </Link>
+          </a>
           <Link
             href="/faq"
             className="block text-white hover:text-yellow-400 px-2 py-1 rounded"
@@ -199,13 +234,15 @@ function SidebarDropdown({
           >
             FAQ
           </Link>
-          <Link
-            href="/contact"
+          <a
+            href="https://www.technobillion.ai/career"
+            target="_blank"
+            rel="noopener noreferrer"
             className="block text-white hover:text-yellow-400 px-2 py-1 rounded"
             onClick={onClose}
           >
             Contact
-          </Link>
+          </a>
         </div>
       )}
     </div>

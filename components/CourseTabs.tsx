@@ -32,7 +32,7 @@ export default function CourseTabs() {
             <TabsTrigger
               key={cat}
               value={cat}
-              className="data-[state=active]:bg-red-600 data-[state=active]:text-white text-sm px-4 py-2 rounded-md bg-[#200000] text-gray-300"
+              className="data-[state=active]:bg-red-600 data-[state=active]:text-white text-sm px-4 py-2 rounded-md bg-[#3F0405] text-gray-300"
             >
               {cat}
             </TabsTrigger>
