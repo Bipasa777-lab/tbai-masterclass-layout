@@ -18,7 +18,7 @@ export const cardData: CourseCardType[] = [
     sessions: 27,
     duration: "30:00 Hours",
     category: "AI Fundamentals",
-    image: "https://wallpaperaccess.com/full/5654215.png"
+    image: "image.svg"
   },
   {
     id: "2",
@@ -28,7 +28,7 @@ export const cardData: CourseCardType[] = [
     sessions: 20,
     duration: "24:00 Hours",
     category: "Legal Tech",
-    image: "https://wallpaperaccess.com/full/5654215.png"
+    image: "image 2.svg"
   },
   {
     id: "3",
@@ -38,6 +38,6 @@ export const cardData: CourseCardType[] = [
     sessions: 18,
     duration: "20:00 Hours",
     category: "Cloud Computing",
-    image: "https://wallpaperaccess.com/full/5654215.png"
+    image: "image3.svg"
   }
 ]
