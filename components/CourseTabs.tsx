@@ -14,7 +14,7 @@ const categories = [
 
 export default function CourseTabs() {
   return (
-    <div className="text-white pt-32 pb-12 px-2 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div className="text-white pt-12 pb-12 px-2 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="text-center mb-10 px-2 sm:px-4">
         <p className="text-yellow-500 font-medium text-sm sm:text-base">
           Ongoing Courses

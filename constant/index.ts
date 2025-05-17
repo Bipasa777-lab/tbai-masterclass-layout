@@ -7,6 +7,7 @@ export type CourseCardType = {
   duration: string
   category: string
   image: string
+  indicator: string
 }
 
 export const cardData: CourseCardType[] = [
@@ -18,7 +19,8 @@ export const cardData: CourseCardType[] = [
     sessions: 27,
     duration: "30:00 Hours",
     category: "AI Fundamentals",
-    image: "image.svg"
+    image: "image.svg",
+    indicator: "Live"
   },
   {
     id: "2",
@@ -28,7 +30,8 @@ export const cardData: CourseCardType[] = [
     sessions: 20,
     duration: "24:00 Hours",
     category: "Legal Tech",
-    image: "image 2.svg"
+    image: "image 2.svg",
+    indicator: "Upcoming"
   },
   {
     id: "3",
@@ -38,6 +41,7 @@ export const cardData: CourseCardType[] = [
     sessions: 18,
     duration: "20:00 Hours",
     category: "Cloud Computing",
-    image: "image3.svg"
+    image: "image3.svg",
+    indicator: "Available"
   }
 ]
