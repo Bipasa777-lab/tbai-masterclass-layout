@@ -45,16 +45,17 @@ export default function Navbar() {
     //     }
     //   `}
     // >
-<nav className="py-4 px-16 flex">
+<nav className="py-4 px-4 sm:px-8 md:px-16 flex">
   <a
     href="https://www.technobillion.ai/career"
     target="_blank"
     rel="noopener noreferrer"
-    className="ml-auto font-medium px-4 py-2 rounded-md hover:bg-yellow-500 transition bg-yellow-400 text-black"
+    className="ml-auto font-medium px-4 py-2 rounded-md bg-yellow-400 text-black hover:bg-yellow-500 transition"
   >
     Enroll Now
   </a>
 </nav>
+
 
   );
 }
